@@ -221,7 +221,7 @@ void delete(book b[], int *count) //case 3
         }
     }
 
-    printf("Khong tim thay todo co noi dung \"%s\"\n", timNoiDung);
+    printf("Khong tim thay sach co noi dung \"%s\"\n", timNoiDung);
 }
 
 void outp(book b[], int size) //case 4
