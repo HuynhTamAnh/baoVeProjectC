@@ -66,7 +66,7 @@ int main(){
                 printf("Nhap sai!\n");
 
         }
-    }while (choice!=0);
+    }while (choice!=9);
 
     return 0;
 }
