@@ -241,7 +241,7 @@ void outp(book b[], int size) //case 4
 void inFile(book *b, int size)
 
 {
-    FILE *fp = fopen("book.txt","a");
+    FILE *fp = fopen("book.txt","w");
     if (fp != NULL) {
         fprintf(fp,"\n| %-10s | %-18s | %-13s | %-13s | %-13s |\n", "Ma sach", "Ten sach", "Tac gia", "Gia tien", "The loai");
         fprintf(fp,"|---------------------------------------------------------------------------------|\n");
