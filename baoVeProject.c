@@ -29,7 +29,7 @@ int main(){
     book b[max];
     do{
         menu();
-        printf("choose: ");
+        printf("choose (0-9): ");
         scanf("%d",&choice);
         switch (choice){
             case 1:
@@ -74,6 +74,7 @@ int main(){
 void menu() {
     printf ("CHUONG TRINH QUAN LY SACH C/C++\n");
     printf ("*************************MENU**************************\n");
+    printf ("**  0. Xoa sach.                                     **\n");
     printf ("**  1. Them sach.                                    **\n");
     printf ("**  2. Cap nhat thong tin sach boi ID.               **\n");
     printf ("**  3. Xoa sach boi ID.                              **\n");
