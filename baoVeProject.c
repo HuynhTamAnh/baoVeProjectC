@@ -1,6 +1,5 @@
 #include<stdio.h>
 #include <string.h>
-#include<stdlib.h>
 #include<ctype.h>
 #define max 100
 
@@ -113,7 +112,7 @@ void addBook(book b[], int *count) // case 1
 
 
             while(strlen(b[*count].maSach)!=5){
-                printf("ma sach phai co 5 ki tu. Nhap lai: ");
+                printf("Ma sach phai co 5 ki tu.\n Nhap lai:\n  Nhap ma sach (5 ki tu): ");
                 scanf("%s",b[*count].maSach);
             }
 
@@ -123,9 +122,11 @@ void addBook(book b[], int *count) // case 1
             b[*count].name[strcspn(b[*count].name, "\n")] = '\0';
 
 
-            if (strlen(b[*count].name) < 10) {
-                printf("Ten sach phai co it nhat 10 ky tu.\n");
-                continue;
+            while(strlen(b[*count].name) < 10){
+                printf("Ten sach phai co it nhat 10 ky tu.\n Nhap lai:\n  Nhap ten sach (10 ki tu tro len): ");
+                fflush(stdin);
+                fgets(b[*count].name, sizeof(b[*count].name), stdin);
+                b[*count].name[strcspn(b[*count].name, "\n")] = '\0';
             }
 
 
@@ -140,9 +141,9 @@ void addBook(book b[], int *count) // case 1
             scanf("%f", &b[*count].gia);
 
 
-            if (b[*count].gia < 1000) {
-                printf("Gia sach phai lon hon hoac bang 1000.\n");
-                continue;
+            while (b[*count].gia < 1000) {
+                printf("Gia sach phai lon hon hoac bang 1000.\n Nhap lai:\n Nhap gia (>= 1000):  ");
+                scanf("%f", &b[*count].gia);
             }
 
             printf("Nhap the loai: ");
@@ -274,7 +275,7 @@ void giaTang(book b[], int count) {
         }
     }
     outp(b,count);
-    printf("Danh sach da duoc sap xep tang dan!\n");
+    printf("Danh sach da duoc sap xep tang dan theo gia tien!\n");
 }
 
 void giaGiam(book b[],int count) {
@@ -288,7 +289,7 @@ void giaGiam(book b[],int count) {
         }
     }
     outp(b,count);
-    printf("Danh sach da duoc sap xep giam dan!\n");
+    printf("Danh sach da duoc sap xep giam dan theo gia tien!\n");
 }
 
 void timByTacGia(book b[], int count) //case 7
@@ -328,7 +329,7 @@ void timByGia(book b[], int count)
     printf("|---------------------------------------------------------------------------------|\n");
 
     int y = 0;
-
+    printf("Sach trong khoang gia %.2f - %.2f\n", nho, lon);
     for (int i = 0; i < count; ++i) {
         if (b[i].gia >= nho && b[i].gia <= lon) {
             printf("| %-10s | %-18s | %-13s | %-13.2f | %-13s |\n",
@@ -345,6 +346,7 @@ void timByGia(book b[], int count)
         printf("Khong tim thay sach trong khoang gia %.2f - %.2f\n", nho, lon);
     }
 }
+
 
 void xoaDuLieu() {
     FILE *file = fopen("book.txt", "w");
