@@ -41,6 +41,7 @@ int main(){
                 break;
             case 3:
                 delete(b, &count);
+                break;
             case 4:
                 outp(b, count);
                 break;
