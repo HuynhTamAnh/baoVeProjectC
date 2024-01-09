@@ -22,6 +22,7 @@ void giaTang(book b[], int count);//case 5
 void giaGiam(book b[], int count);//case 6
 void timByTacGia(book b[], int count); //case 7
 void timByGia(book b[], int count);//case 8
+void xoaDuLieu();//case 9
 int main(){
 
     int choice, count=0;
@@ -55,11 +56,17 @@ int main(){
             case 8:
                 timByGia(b,count);
                 break;
+            case 0:
+                xoaDuLieu();
+                break;
+            case 9:
+                printf("Chuong trinh da thoat!!");
+                break;
             default:
                 printf("Nhap sai!\n");
 
         }
-    }while (choice!=8);
+    }while (choice!=0);
 
     return 0;
 }
@@ -71,10 +78,11 @@ void menu() {
     printf ("**  2. Cap nhat thong tin sach boi ID.               **\n");
     printf ("**  3. Xoa sach boi ID.                              **\n");
     printf ("**  4. Hien thi thong tin sach.                      **\n");
-    printf ("**  5. Sap xep sach theo gia.                        **\n");
-    printf ("**  6. Tim kiem sach theo ten tac gia.               **\n");
-    printf ("**  7. Tim kiem sach theo khoang gia.                **\n");
-    printf ("**  8. Thoat.                                        **\n");
+    printf ("**  5. Sap xep sach theo gia tang dan.               **\n");
+    printf ("**  6. Sap xep sach theo gia giam dan.               **\n");
+    printf ("**  7. Tim kiem sach theo ten tac gia.               **\n");
+    printf ("**  8. Tim kiem sach theo khoang gia.                **\n");
+    printf ("**  9. Thoat.                                        **\n");
     printf ("*******************************************************\n");
 }
 
@@ -333,5 +341,14 @@ void timByGia(book b[], int count)
 
     if (!y) {
         printf("Khong tim thay sach trong khoang gia %.2f - %.2f\n", nho, lon);
+    }
+}
+
+void xoaDuLieu() {
+    FILE *file = fopen("book.txt", "w");
+
+    if (file != NULL) {
+        fclose(file);
+        printf("Da xoa du lieu trong file book.txt.\n");
     }
 }
