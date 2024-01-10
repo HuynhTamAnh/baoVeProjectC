@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include <string.h>
+#include<stdlib.h>
 #include<ctype.h>
 #define max 100
 
@@ -24,13 +25,33 @@ void timByGia(book b[], int count);//case 8
 void xoaDuLieu();//case 9
 int main(){
 
-    int choice, count=0;
-    book b[max];
-    do{
-        menu();
-        printf("choose (0-9): ");
-        scanf("%d",&choice);
-        switch (choice){
+
+        int choice, count = 0;
+        book b[max];
+        char input[10];
+        char *endptr;  // Con trỏ để kiểm tra xem có lỗi hay không
+
+        do {
+            menu();
+            printf("choose (0-9): ");
+            fflush(stdin);
+            fgets(input, sizeof(input), stdin);
+
+            // Chuyển đổi chuỗi thành số nguyên
+            choice = strtol(input, &endptr, 10);
+
+            // Kiểm tra giá trị trả về và xem có lỗi hay không
+            if (*endptr != '\0' && *endptr != '\n') {
+                printf("Nhap sai! Vui long nhap lai.\n");
+                continue;  // Lặp lại vòng lặp do-while để yêu cầu người dùng nhập lại
+            }
+
+            if (choice < 0 || choice > 9) {
+                printf("Nhap sai! Vui long nhap lai.\n");
+                continue;  // Lặp lại vòng lặp do-while để yêu cầu người dùng nhập lại
+            }
+
+            switch (choice){
             case 1:
                 addBook( b, &count);
                 inFile(b,count);
