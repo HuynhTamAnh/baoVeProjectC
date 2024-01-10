@@ -28,7 +28,7 @@ int main(){
 
         int choice, count = 0;
         book b[max];
-        char input[10];
+        char input[10];// mảng lưu chuỗi kí từ được nhập
         char *endptr;  // Con trỏ để kiểm tra xem có lỗi hay không
 
         do {
@@ -46,10 +46,7 @@ int main(){
                 continue;  // Lặp lại vòng lặp do-while để yêu cầu người dùng nhập lại
             }
 
-            if (choice < 0 || choice > 9) {
-                printf("Nhap sai! Vui long nhap lai.\n");
-                continue;  // Lặp lại vòng lặp do-while để yêu cầu người dùng nhập lại
-            }
+
 
             switch (choice){
             case 1:
@@ -84,7 +81,7 @@ int main(){
                 printf("Chuong trinh da thoat!!");
                 break;
             default:
-                printf("Nhap sai!\n");
+                printf("Nhap sai!\n Vui long nhap lai!\n");
 
         }
     }while (choice!=9);
