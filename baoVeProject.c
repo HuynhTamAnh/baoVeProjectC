@@ -41,7 +41,8 @@ int main(){
             choice = strtol(input, &endptr, 10);
 
             // Kiểm tra giá trị trả về và xem có lỗi hay không
-            if (*endptr != '\0' && *endptr != '\n') {
+            if (*endptr != '\0' && *endptr != '\n') //chỉ vô chữ
+            {
                 printf("Nhap sai! Vui long nhap lai.\n");
                 continue;  // Lặp lại vòng lặp do-while để yêu cầu người dùng nhập lại
             }
@@ -124,9 +125,10 @@ void addBook(book b[], int *count) // case 1
         if (*count < max) {
             printf("Nhap thong tin sach muon them vao:\n ");
             printf("Nhap ma sach (5 ki tu): ");
-            fflush(stdin);
+            fflush(stdin);//loại bỏ bất kỳ ký tự nào còn lại trong bộ đệm sau khi người dùng nhập lựa chọn số từ bàn phím.
             fgets(b[*count].maSach, sizeof(b[*count].maSach), stdin);
-            b[*count].maSach[strcspn(b[*count].maSach, "\n")] = '\0';
+            b[*count].maSach[strcspn(b[*count].maSach, "\n")] = '\0';// tìm vị trí đầu tiên của kí tự xuống dòng trong chuỗi
+            //Nếu không tìm thấy, sẽ trả về chuỗi
 
 
             while(strlen(b[*count].maSach)!=5){
