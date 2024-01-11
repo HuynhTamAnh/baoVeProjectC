@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include <string.h>
 #include<stdlib.h>
+#include<stdbool.h>
 #include<ctype.h>
 #define max 100
 
@@ -20,8 +21,8 @@ void delete(book b[],int *count);//case 3
 void outp(book b[], int size);//case 4
 void giaTang(book b[], int count);//case 5
 void giaGiam(book b[], int count);//case 6
-void timByTacGia(book b[], int count); //case 7
-void timByGia(book b[], int count);//case 8
+bool timByTacGia(book b[], int count); //case 7
+bool timByGia(book b[], int count);//case 8
 void xoaDuLieu();//case 9
 int main(){
 
@@ -312,16 +313,19 @@ void giaGiam(book b[],int count) {
     printf("Danh sach da duoc sap xep giam dan theo gia tien!\n");
 }
 
-void timByTacGia(book b[], int count) //case 7
+bool timByTacGia(book b[], int count)
 {
     char tacGia[max];
     printf("Nhap tac gia cua sach muon tim: ");
     fflush(stdin);
     fgets(tacGia, sizeof(tacGia), stdin);
     tacGia[strcspn(tacGia, "\n")] = '\0';
+
     printf("\n| %-10s | %-18s | %-13s | %-13s | %-13s |\n", "Ma sach", "Ten sach", "Tac gia", "Gia tien", "The loai");
     printf("|---------------------------------------------------------------------------------|\n");
-    int x=0;
+
+    bool found = false;
+
     for (int i = 0; i < count; ++i) {
         if (strstr(b[i].tacGia, tacGia) != NULL) {
             printf("| %-10s | %-18s | %-13s | %-13.2f | %-13s |\n",
@@ -330,16 +334,18 @@ void timByTacGia(book b[], int count) //case 7
                    b[i].tacGia,
                    b[i].gia,
                    b[i].theLoai);
-            x = 1;
+            found = true;
         }
     }
 
-    if (!x) {
+    if (!found) {
         printf("Khong tim thay sach cua tac gia \"%s\"\n", tacGia);
     }
+
+    return found;
 }
 
-void timByGia(book b[], int count)
+bool timByGia(book b[], int count)
 {
     float nho, lon;
     printf("Nhap khoang gia muon tim kiem (Gia nho nhat - Gia lon nhat): ");
@@ -348,7 +354,7 @@ void timByGia(book b[], int count)
     printf("\n| %-10s | %-18s | %-13s | %-13s | %-13s |\n", "Ma sach", "Ten sach", "Tac gia", "Gia tien", "The loai");
     printf("|---------------------------------------------------------------------------------|\n");
 
-    int y = 0;
+    bool y = false;
     printf("Sach trong khoang gia %.2f - %.2f\n", nho, lon);
     for (int i = 0; i < count; ++i) {
         if (b[i].gia >= nho && b[i].gia <= lon) {
@@ -358,13 +364,14 @@ void timByGia(book b[], int count)
                    b[i].tacGia,
                    b[i].gia,
                    b[i].theLoai);
-            y = 1;
+            y = true;
         }
     }
 
     if (!y) {
         printf("Khong tim thay sach trong khoang gia %.2f - %.2f\n", nho, lon);
     }
+    return y;
 }
 
 
