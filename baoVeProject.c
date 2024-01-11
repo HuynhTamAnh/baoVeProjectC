@@ -110,11 +110,13 @@ void menu() {
 void vietHoa(char *str) //viet hoa chu cai dau
 {
 
-    for (int i = 0; str[i] != '\0'; i++) {
-        if (i == 0 || (i > 0 && str[i - 1] == ' ')) {
-            str[i] = toupper(str[i]);
+    for (int i = 0; str[i] != '\0'; i++) //chạy từ kí tự đầu tiên trong chuỗi cho đến kí tự kết thúc chuỗi
+    {
+        if (i == 0 || (i > 0 && str[i - 1] == ' ')) //kiểm tra kí tự đầu tiên hoặc là kí tự mà trước nó là khoảng cách
+        {
+            str[i] = toupper(str[i]);//viết hoa nó lên
         } else {
-            str[i] = tolower(str[i]);
+            str[i] = tolower(str[i]);// còn lại viết thường
         }
     }
 }
@@ -188,11 +190,11 @@ void addBook(book b[], int *count) // case 1
 
 void update(book b[], int count) // case 2
 {
-    char timNoiDung[100];
+    char timNoiDung[max];
     printf("Nhap ma sach muon cap nhap: ");
     fflush(stdin);
     fgets(timNoiDung, sizeof(timNoiDung), stdin);
-    timNoiDung[strcspn(timNoiDung, "\n")] = '\0';
+    timNoiDung[strcspn(timNoiDung, "\n")] = '\0';//chấm dứt chuỗi tại vị trí của ký tự xuống dòng
 
     for (int i = 0; i < count; i++) {
         if (strcmp(b[i].maSach, timNoiDung) == 0) {
@@ -230,7 +232,7 @@ void delete(book b[], int *count) //case 3
 {
     char timNoiDung[100];
     printf("Nhap ma so cua sach ban muon xoa: ");
-    scanf(" %[^\n]s", timNoiDung);
+    scanf(" %[^\n]s", timNoiDung);//nhận luôn lệnh xuống dòng
 
     for (int i = 0; i < *count; ++i) {
         if (strcmp(b[i].maSach, timNoiDung) == 0) {
